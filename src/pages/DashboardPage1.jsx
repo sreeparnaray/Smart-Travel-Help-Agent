@@ -46,7 +46,7 @@ export default function DashboardPage() {
   }, []);
 
 
-  // 🗓️ Get today’s date
+  //  Get today’s date
   useEffect(() => {
     const today = new Date();
     const formatted = today.toLocaleDateString("en-GB", {
@@ -58,7 +58,7 @@ export default function DashboardPage() {
     setDate(`${formatted} (${dayName})`);
   }, []);
 
-  // 📍 Get user location + 🌦️ weather
+  // Get user location + weather
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(async (pos) => {
@@ -100,7 +100,7 @@ export default function DashboardPage() {
             <div className={styles.titleRow}>
               <div>
                 <img className={styles.welcome} src="../../../stha-background.png" alt="welcome" />
-                <h2 className={styles.pageTitle}>Hi {userName}!</h2>
+                <h2 className={styles.pageTitle}>Hi {userName}! Welcome Back!</h2>
               </div>
             </div>
 
@@ -173,7 +173,6 @@ export default function DashboardPage() {
                   </select>
                 </div>
                 <div className={styles.chartHolder}>
-                  {/* Placeholder canvas; hook up Chart.js later if needed */}
                   <canvas id="chart1" className={styles.canvas}></canvas>
                 </div>
               </div>
@@ -193,44 +192,39 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Map + Top Selling */}
+            {/* Travel News */}
             <div className={styles.gridTwoColsSmallLeft}>
               <div className={styles.card}>
                 <div className={styles.cardHeader}>
                   <h6 className={styles.cardSubtitle}>Travel News</h6>
                 </div>
                 <div className={styles.cardContent}>
-                  
-
                   {loading ? (
-      <p className="text-gray-500 text-sm">Loading news...</p>
-    ) : news.length === 0 ? (
-      <p className="text-gray-500 text-sm">No travel news available.</p>
-    ) : (
-      <ul className="space-y-3">
-        {news.slice(0, 6).map((item, index) => (
-          <li key={index} className="border-b pb-2 last:border-none">
-            <a
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-blue-600 hover:underline"
-            >
-              {item.title}
-            </a>
-            <p className="text-xs text-gray-500">
-              {item.pubDate
-                ? new Date(item.pubDate).toLocaleString()
-                : "No date"}
-            </p>
-          </li>
-        ))}
-      </ul>
-    )}
-
-
+                    <p className="text-gray-500 text-sm">Loading news...</p>
+                  ) : news.length === 0 ? (
+                    <p className="text-gray-500 text-sm">No travel news available.</p>
+                  ) : (
+                    <ul className="space-y-3">
+                      {news.slice(0, 6).map((item, index) => (
+                          <li key={index} className="border-b pb-2 last:border-none">
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium text-blue-600 hover:underline"
+                          >
+                            {item.title}
+                          </a>
+                          <p className="text-xs text-gray-500">
+                            {item.pubDate
+                              ? new Date(item.pubDate).toLocaleString()
+                              : "No date"}
+                          </p>
+                          </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-
                 <p className={styles.muted}>Last updated: Just Now</p>
               </div>
 
@@ -251,7 +245,7 @@ export default function DashboardPage() {
                         <th></th>
                         <th>Trip Name</th>
                         <th>Location</th>
-                        <th>Total Cost</th>
+                        <th>Estimate Cost</th>
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th></th>

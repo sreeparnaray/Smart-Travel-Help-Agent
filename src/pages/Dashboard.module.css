@@ -26,8 +26,8 @@
 
 /* Force the section to align flush with sidebar */
 :global(main) {
-  margin-left: 10px !important;
-  padding-left: 10px !important;
+  margin-left: 2px !important;
+  padding-left: 2px !important;
 }
 
 .titleRow {
@@ -38,9 +38,30 @@
 
 .pageTitle {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 2.0rem; /* bigger for emphasis */
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #6a11cb, #2575fc); /* purple → blue gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+  animation: fadeInUp 1s ease-out;
 }
+
+/* Optional animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .breadcrumb ol {
   margin: 0;
@@ -68,10 +89,10 @@
   gap: 12px;
   align-items: center;
   padding: 16px;
-  border: 2px solid rgba(6, 105, 253, 0.322);
+  border: 2px solid #ffa5a5;
   border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  background: #fd9aa2;
+  box-shadow: 0 1px 2px rgba(255, 90, 90, 0.322);
 }
 
 .icon {
@@ -89,12 +110,12 @@
 .orange { background: #f59e0b; }
 
 .kpiContent { display: grid; gap: 4px; }
-.kpiLabel { margin: 0; font-size: .85rem; color: #6b7280; }
+.kpiLabel { margin: 0; font-size: 1.05rem; color: #ffe4ea; }
 .kpiValue { margin: 0; font-size: 1.35rem; font-weight: 800; }
 .delta { margin: 0; font-size: .8rem; }
 .up { color: #16a34a; }
 .down { color: #dc2626; }
-.muted { color: #9ca3af; }
+.muted { color: #f5e4ea; }
 
 /* Cards & grids */
 .gridTwoColsLargeLeft {
@@ -110,10 +131,11 @@
 }
 
 .card {
-  background: #aaddff;
-  border: 1px solid rgba(0,0,0,0.08);
+  background: #0199ffc2;
+  /* border: 1px solid #0199ffc2; */
   border-radius: 16px;
   padding: 16px;
+  box-shadow: 0 5px 5px #0199ff60;
 }
 
 .cardHeader {
@@ -124,7 +146,7 @@
   margin-bottom: 12px;
 }
 
-.cardSubtitle { margin: 0; color: #6b7280; font-size: .9rem; }
+.cardSubtitle { margin: 0; color: #b8bcc5; font-size: .9rem; }
 .cardTitle { margin: 0; font-size: 1.25rem; font-weight: 800; }
 
 .select {

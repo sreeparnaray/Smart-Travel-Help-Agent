@@ -12,10 +12,13 @@ import ShareIcon from "@mui/icons-material/Share";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import PlanIcon from "@mui/icons-material/AddBox";
 import NewspaperIcon from '@mui/icons-material/Newspaper';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { useNavigate } from "react-router-dom";
 import styles from "./Layout.module.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import Profile from "./Profile";
+
 
 //import "./Layout.css";
 
@@ -39,6 +42,8 @@ export default function Layout({ children }) {
     { text: "Cost Analysis", icon: <CalculateIcon />, path: "/dashboard/cost-analysis" },
     { text: "Friend Share", icon: <ShareIcon />, path: "/dashboard/friend-share" },
     { text: "Friend Location", icon: <PeopleIcon />, path: "/dashboard/friend-location" },
+    { text: "Profile", icon: <AccountBoxIcon />, path: "/dashboard/profile" },
+
   ];
 
 
@@ -152,7 +157,14 @@ export default function Layout({ children }) {
               <Avatar>{userName.charAt(0).toUpperCase()}</Avatar>
             </IconButton>
             <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-              <MenuItem onClick={() => setAnchorEl(null)}>View Profile</MenuItem>
+              <MenuItem
+                onClick={() => {
+                setAnchorEl(null);
+                navigate("/dashboard/profile");   // 👈 navigate to Profile page
+                }}
+              >
+                View Profile
+              </MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Assistant } from "./assistants/googleai";
+import { Assistant } from "./assistants/openai";
 import { Chat } from "./chatcomponents/Chat/Chat";
 import { Controls } from "./chatcomponents/Controls/Controls";
 import { Loader } from "./chatcomponents/Loader/Loader";
 import styles from "./ChatbotPanel.module.css";
+
 
 const assistant = new Assistant();
 

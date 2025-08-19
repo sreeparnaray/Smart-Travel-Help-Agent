@@ -15,6 +15,7 @@ import api from "../services/api";
 
 export default function PlanJourney() {
   const [destination, setDestination] = useState("");
+  const [origin, setOrigin] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [travelers, setTravelers] = useState(1); // new field
@@ -65,10 +66,28 @@ export default function PlanJourney() {
 
         {/* Content */}
         <CardContent>
-          <Typography variant="body1" sx={{ mb: 3 }}>
-            Enter your destination, travel dates, and number of travelers. Our
-            AI will create a detailed itinerary for your group.
+          <Typography variant="h6" sx={{ mb: 3 }}>
+            Enter your jouney Details.
           </Typography>
+
+          <TextField
+            fullWidth
+            label="Trip Name"
+            variant="outlined"
+            sx={{ mb: 2 }}
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+          />
+
+
+          <TextField
+            fullWidth
+            label="Origin"
+            variant="outlined"
+            sx={{ mb: 2 }}
+            value={origin}
+            onChange={(e) => setOrigin(e.target.value)}
+          />
 
           <TextField
             fullWidth
@@ -126,7 +145,7 @@ export default function PlanJourney() {
             onClick={handleGenerate}
             disabled={loading}
           >
-            {loading ? "Generating..." : "Generate Itinerary"}
+            {loading ? "Generating..." : "Confirm Journey"}
           </Button>
 
           {plan && (

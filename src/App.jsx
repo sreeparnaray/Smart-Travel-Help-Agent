@@ -13,6 +13,7 @@ import CostAnalysis from "./components/CostAnalysis";
 import FriendShare from "./components/FriendShare";
 import FriendLocation from "./components/FriendLocation";
 import TravelNewsFeed from "./components/TravelNewsFeed";
+import Profile from "./components/Profile";
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="cost-analysis" element={<CostAnalysis />} />
           <Route path="friend-share" element={<FriendShare />} />
           <Route path="friend-location" element={<FriendLocation />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </Router>

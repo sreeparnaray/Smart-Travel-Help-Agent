@@ -42,6 +42,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 12px;
+  background-color: #fd9aa2a8;
 }
 
 .UserMessage {
