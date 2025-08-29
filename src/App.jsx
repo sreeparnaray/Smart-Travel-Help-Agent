@@ -13,6 +13,7 @@ import CostAnalysis from "./components/CostAnalysis";
 import FriendShare from "./components/FriendShare";
 import FriendLocation from "./components/FriendLocation";
 import TravelNewsFeed from "./components/TravelNewsFeed";
+import TouristGallery from "./components/TouristGallery";
 import Profile from "./components/Profile";
 
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="plan-journey" element={<PlanJourney />} />
           <Route path="travel-news" element={<TravelNewsFeed />} />
           <Route path="discover-nearby" element={<DiscoverNearby />} />
+          <Route path="tourist-gallery" element={<TouristGallery />} />
           <Route path="weather-safety" element={<WeatherSafety />} />
           <Route path="map-view" element={<MapView />} />
           <Route path="cost-analysis" element={<CostAnalysis />} />

@@ -7,6 +7,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import ExploreIcon from "@mui/icons-material/Explore";
 import MapIcon from "@mui/icons-material/Map";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import CollectionsIcon from '@mui/icons-material/Collections';
 import PeopleIcon from "@mui/icons-material/People";
 import ShareIcon from "@mui/icons-material/Share";
 import CalculateIcon from "@mui/icons-material/Calculate";
@@ -36,6 +37,7 @@ export default function Layout({ children }) {
     { text: "Dashboard", icon: <DashboardIcon />, path: "/dashboard/dashboard1" },
     { text: "Plan Journey", icon: <PlanIcon />, path: "/dashboard/plan-journey" },
     { text: "Discover Nearby", icon: <ExploreIcon />, path: "/dashboard/discover-nearby" },
+    { text: "Tourist Gallery", icon: <CollectionsIcon />, path: "/dashboard/tourist-gallery" },
     { text: "Weather & Safety", icon: <WbSunnyIcon />, path: "/dashboard/weather-safety" },
     { text: "Live Travel News", icon: <NewspaperIcon />, path: "/dashboard/travel-news" },
     { text: "Map View", icon: <MapIcon />, path: "/dashboard/map-view" },

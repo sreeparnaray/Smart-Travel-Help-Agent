@@ -17,18 +17,9 @@ export default function LandingPage() {
       }}
     >
       {/* Header */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          p: 3,
-          color: "#fff",
-        }}
-      >
-        
-        <Typography variant="h5" fontWeight="bold">
-          <img className={styles.Logo} src="../../../holiday-trip.png"/>
+      <Box className={styles.header}>
+        <Typography variant="h5" className={styles.logoText}>
+          <img className={styles.logo} src="../../../holiday-trip.png" alt="logo" />
           Smart Travel Help Agent
         </Typography>
         <Box>
