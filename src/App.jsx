@@ -16,6 +16,7 @@ import TravelNewsFeed from "./components/TravelNewsFeed";
 import TouristGallery from "./components/TouristGallery";
 import Profile from "./components/Profile";
 
+
 export default function App() {
   return (
     <Router>

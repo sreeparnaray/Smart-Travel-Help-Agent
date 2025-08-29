@@ -95,7 +95,7 @@ app.get("/api/photos/:id", async (req, res) => {
         const targetHeight = Math.round(targetWidth * aspectRatio);
 
         return {
-          url: `${p.prefix}${targetWidth}x${targetHeight}${p.suffix}`,
+          url: `${p.prefix}${p.width}x${p.height}${p.suffix}`,
           width: targetWidth,
           height: targetHeight,
           created_at: p.created_at,
@@ -163,6 +163,91 @@ app.get("/api/photos/:id", async (req, res) => {
     console.error("❌ Error in /api/photos:", err);
     res.status(500).json({ error: "Failed to fetch photos" });
   }
+});
+
+// ---------- Emergency Places ----------
+/**
+ * GET /api/emergency/places
+ * Query params:
+ *   ll        -> "lat,lng" (required)
+ *   type      -> "hospital" | "police" (default "hospital")
+ *   limit     -> number (default 10)
+ *   radius    -> meters (default 5000)
+ */
+app.get("/api/emergency/places", async (req, res) => {
+  const { ll, type = "hospital", limit = 10, radius = 5000 } = req.query;
+
+  if (!ll) return res.status(400).json({ error: "Missing 'll' (lat,lng)" });
+
+  // Use query keywords so we don’t rely on category IDs.
+  const TYPE_TO_QUERY = {
+    hospital: "hospital",
+    police: "police station",
+  };
+  const query = TYPE_TO_QUERY[type] || type;
+
+  const url =
+    `https://places-api.foursquare.com/v3/places/search` +
+    `?ll=${encodeURIComponent(ll)}` +
+    `&query=${encodeURIComponent(query)}` +
+    `&sort=DISTANCE&radius=${encodeURIComponent(radius)}` +
+    `&limit=${encodeURIComponent(limit)}`;
+
+  try {
+    const r = await fetch(url, {
+      headers: {
+        Authorization: FOURSQUARE_API_KEY,          // ✅ NO "Bearer"
+        "X-Places-Api-Version": API_VERSION,
+        Accept: "application/json",
+      },
+    });
+
+    const data = await r.json();
+
+    const results = (data.results || []).map((p) => ({
+      id: p.fsq_id,
+      name: p.name,
+      distance: p.distance, // meters
+      address:
+        p.location?.formatted_address ||
+        [p.location?.address, p.location?.locality, p.location?.country]
+          .filter(Boolean)
+          .join(", "),
+      lat: p.geocodes?.main?.latitude,
+      lng: p.geocodes?.main?.longitude,
+      phone: p.tel || p.contacts?.phone || null,
+    }));
+
+    res.json(results);
+  } catch (err) {
+    console.error("Error /api/emergency/places:", err);
+    res.status(500).json({ error: "Failed to fetch emergency places" });
+  }
+});
+
+// ---------- Helplines ----------
+/**
+ * GET /api/emergency/helplines
+ * Query params:
+ *   country -> ISO alpha-2 (e.g., "IN", "US"). If missing/unknown, returns "default" (112).
+ */
+app.get("/api/emergency/helplines", (req, res) => {
+  const HELPLINES = {
+    default: { general: "112" },
+    IN: { general: "112", police: "100", ambulance: "108", fire: "101" },
+    US: { general: "911", poison_control: "1-800-222-1222" },
+    GB: { general: "999", alt: "112", police_non_emergency: "101" },
+    AU: { general: "000", alt: "112", state_emergency_service: "132 500" },
+    CA: { general: "911", alt: "112" },
+    EU: { general: "112" },
+    NZ: { general: "111" },
+    SG: { general: "112", police: "999", ambulance_fire: "995" },
+  };
+
+  const code = (req.query.country || "default").toUpperCase();
+  const numbers = HELPLINES[code] || HELPLINES.default;
+
+  res.json({ country: HELPLINES[code] ? code : "default", numbers });
 });
 
 app.listen(PORT, () => {

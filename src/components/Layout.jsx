@@ -42,8 +42,8 @@ export default function Layout({ children }) {
     { text: "Live Travel News", icon: <NewspaperIcon />, path: "/dashboard/travel-news" },
     { text: "Map View", icon: <MapIcon />, path: "/dashboard/map-view" },
     { text: "Cost Analysis", icon: <CalculateIcon />, path: "/dashboard/cost-analysis" },
-    { text: "Friend Share", icon: <ShareIcon />, path: "/dashboard/friend-share" },
-    { text: "Friend Location", icon: <PeopleIcon />, path: "/dashboard/friend-location" },
+    { text: "Friend Share", icon: <PeopleIcon />, path: "/dashboard/friend-share" },
+    { text: "Friend Location", icon: <ShareIcon />, path: "/dashboard/friend-location" },
     { text: "Profile", icon: <AccountBoxIcon />, path: "/dashboard/profile" },
 
   ];

@@ -5,8 +5,16 @@ import Topbar from "../components/Topbar";
 import Layout from "../components/Layout";
 import FloatingChatButton from "../chatcomponents/FloatingChatButton";
 import TravelNewsFeed from "../components/TravelNewsFeed";
+import EmergencyButton from "../chatcomponents/EmergencyButton";
+import EmergencyMode from "../components/EmergencyMode";
+import EmergencyOverlay from "../components/EmergencyOverlay";
+import { useState } from "react";
 
 export default function DashboardPage() {
+
+  const [emergencyOpen, setEmergencyOpen] = useState(false);
+
+
   return (
     <Box sx={{ display: "flex" }}>
       {/* <Sidebar /> */}
@@ -20,7 +28,16 @@ export default function DashboardPage() {
       <TravelNewsFeed />
     </div> */}
       </Box>
+
+      
+      <EmergencyButton onClick={() => setEmergencyOpen(true)} />
       <FloatingChatButton /> 
+
+      {/* 🚨 Emergency Mode Fullscreen */}
+      <EmergencyOverlay
+        open={emergencyOpen}
+        onClose={() => setEmergencyOpen(false)}
+      />
     </Box>
   );
 }

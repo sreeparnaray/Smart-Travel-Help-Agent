@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./FloatingChatButton.module.css";
-import ChatbotPanel from "../ChatbotPanel"; // Your chatbot UI
+import ChatbotPanel from "../ChatbotPanel"; 
 
 export default function FloatingChatButton() {
   const [isOpen, setIsOpen] = useState(false);
